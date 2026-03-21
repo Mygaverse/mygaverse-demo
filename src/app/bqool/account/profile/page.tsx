@@ -65,7 +65,7 @@ export default function ProfilePage() {
 
     // 2. If Auth done but no user, redirect to login
     if (!user) {
-        router.push('/login'); 
+        router.push('/bqool/login'); 
         return;
     }
 

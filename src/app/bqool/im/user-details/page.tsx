@@ -96,7 +96,7 @@ export default function UserDetailsPage() {
     try {
         await deleteDoc(doc(db, 'users', user.id));
         alert("User deleted.");
-        router.push('/im');
+        router.push('/bqool/im');
     } catch (error) { alert("Failed to delete user."); } 
     finally { setActionLoading(false); }
   };

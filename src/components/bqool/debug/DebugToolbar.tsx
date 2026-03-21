@@ -25,7 +25,7 @@ export const DebugToolbar = () => {
       });
       
       // Force reload to trigger the layout checks
-      window.location.href = status ? '/demo' : '/demo/getting-started';
+      window.location.href = status ? '/bqool' : '/bqool/getting-started';
       
     } catch (e) {
       console.error("Debug Error:", e);

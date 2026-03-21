@@ -29,7 +29,7 @@ export default function AdminLoginPage() {
       signInWithEmailAndPassword(auth, DEV_EMAIL, DEV_PASS)
         .then(() => {
           console.log("⚡ Auto-Login Success");
-          router.push('/im');
+          router.push('/bqool/im');
         })
         .catch((err) => {
           console.warn("⚡ Auto-Login Failed (User might not exist in Emulator):", err.message);
@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
         try {
           const userDoc = await getDoc(doc(db, "users", user.uid));
           if (userDoc.exists() && userDoc.data().role === 'admin') {
-            router.push('/im'); // Redirect to Admin Dashboard
+            router.push('/bqool/im'); // Redirect to Admin Dashboard
           }
         } catch (e) {
           console.error(e);
@@ -68,7 +68,7 @@ export default function AdminLoginPage() {
       const userDoc = await getDoc(doc(db, "users", cred.user.uid));
       
       if (userDoc.exists() && userDoc.data().role === 'admin') {
-        router.push('/im'); // Success
+        router.push('/bqool/im'); // Success
       } else {
         setError("Access Denied: You are not an administrator.");
         await auth.signOut(); // Kick them out immediately

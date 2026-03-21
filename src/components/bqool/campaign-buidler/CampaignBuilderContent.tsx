@@ -257,7 +257,7 @@ function BuilderInner() {
             await batch.commit();
 
             alert("Goal Launched Successfully!");
-            router.push('/ad-manager'); // Redirect to dashboard
+            router.push('/bqool/ad-manager'); // Redirect to dashboard
 
         } catch (e) {
             console.error("Error launching goal:", e);

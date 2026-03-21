@@ -7,7 +7,7 @@ export default function IMPageRedirect() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/im/home');
+    router.push('/bqool/im/home');
   }, [router]);
 
   return (

@@ -26,7 +26,7 @@ export function Sidebar() {
       label: 'Dashboard', 
       icon: PieChartFill,
       hasSubmenu: false,
-      href: '/' 
+      href: '/bqool' 
     },
     { 
       id: 'advertising', 
@@ -35,10 +35,10 @@ export function Sidebar() {
       hasSubmenu: true,
       // Parent doesn't need an href, it toggles
       submenu: [
-        { id: 'ad-manager', label: 'Ad Manager', icon: ArchiveFill, href: '/ad-manager' },
-        { id: 'budget-manager', label: 'Budget Manager', icon: Easel2Fill, href: '/budget-manager' },
-        { id: 'campaign-builder', label: 'Campaign Builder', icon: Clipboard2PulseFill, href: '/campaign-builder' },
-        { id: 'ad-history', label: 'Ad History', icon: ClipboardDataFill, href: '/ad-history' },
+        { id: 'ad-manager', label: 'Ad Manager', icon: ArchiveFill, href: '/bqool/ad-manager' },
+        { id: 'budget-manager', label: 'Budget Manager', icon: Easel2Fill, href: '/bqool/budget-manager' },
+        { id: 'campaign-builder', label: 'Campaign Builder', icon: Clipboard2PulseFill, href: '/bqool/campaign-builder' },
+        { id: 'ad-history', label: 'Ad History', icon: ClipboardDataFill, href: '/bqool/ad-history' },
       ]
     },
   ];

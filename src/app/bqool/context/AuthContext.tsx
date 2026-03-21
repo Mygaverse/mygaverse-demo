@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
             if (!isApproved && !isAdmin) {
                console.warn("User is not approved and not admin. Redirecting...");
-               window.location.href = "/"; 
+               window.location.href = "/bqool/login"; 
                return;
             }
             

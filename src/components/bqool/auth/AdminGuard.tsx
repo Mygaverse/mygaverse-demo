@@ -12,14 +12,14 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
       // 1. Not logged in -> Kick to Login
       if (!user) {
         // Since IM is inside Demo, we can send them to the main login
-        window.location.href = "/"; 
+        window.location.href = "/bqool/login"; 
         return;
       }
 
       // 2. Logged in but NOT Admin -> Kick to User Dashboard
       if (user.role !== 'admin') {
         alert("Access Denied: Admins Only");
-        router.push('/demo'); // Send them back to safety
+        router.push('/bqool'); // Send them back to safety
         return;
       }
     }

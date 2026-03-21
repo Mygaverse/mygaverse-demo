@@ -74,7 +74,7 @@ function EditorContent() {
             } else {
                 await setDoc(doc(db, 'announcements', id!), payload, { merge: true });
             }
-            router.push('/im/settings/announcement');
+            router.push('/bqool/im/settings/announcement');
         } catch (e) {
             console.error(e);
             alert('Failed to save');

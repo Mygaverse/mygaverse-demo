@@ -17,7 +17,7 @@ export function AdminNavbar() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      router.push('/im/login');
+      router.push('/bqool/im/login');
     } catch (error) {
       console.error("Logout Error:", error);
     }
@@ -27,8 +27,8 @@ export function AdminNavbar() {
   const getTabClass = (tabPath: string) => {
     // HOME: Check for exact match OR sub-routes if we had them (but Home usually is dashboard)
     // Also include the root /im which redirects to home, just in case
-    if (tabPath === '/im/home') {
-      const isActive = pathname === '/im/home' || pathname === '/im'; // Fix: also highlight on /im
+    if (tabPath === '/bqool/im/home') {
+      const isActive = pathname === '/bqool/im/home' || pathname === '/bqool/im'; // Fix: also highlight on /im
       return `px-6 py-2.5 text-sm font-semibold rounded-t-md transition-colors ${isActive ? 'bg-[#f4f6f9] text-[#1a1a1a]' : 'text-white/80 hover:text-white hover:bg-white/10'
         }`;
     }
@@ -75,19 +75,19 @@ export function AdminNavbar() {
 
       {/* BOTTOM ROW: Navigation Tabs */}
       <div className="px-6 pt-2 flex gap-1 relative">
-        <Link href="/im/home" className={getTabClass('/im/home')}>
+        <Link href="/im/home" className={getTabClass('/bqool/im/home')}>
           Home
         </Link>
 
-        <Link href="/im/account" className={getTabClass('/im/account')}>
+        <Link href="/im/account" className={getTabClass('/bqool/im/account')}>
           Account
         </Link>
 
-        <Link href="/im/stores" className={getTabClass('/im/stores')}>
+        <Link href="/im/stores" className={getTabClass('/bqool/im/stores')}>
           Amazon Stores
         </Link>
 
-        <Link href="/im/forum" className={getTabClass('/im/forum')}>
+        <Link href="/im/forum" className={getTabClass('/bqool/im/forum')}>
           Forum
         </Link>
 
@@ -114,7 +114,7 @@ export function AdminNavbar() {
         </div>
 
         {/* Demo Tab links back to Non-Admin Root */}
-        <Link href="/" className="px-6 py-2.5 text-sm font-semibold rounded-t-md transition-colors text-white/80 hover:text-white hover:bg-white/10">
+        <Link href="/bqool" className="px-6 py-2.5 text-sm font-semibold rounded-t-md transition-colors text-white/80 hover:text-white hover:bg-white/10">
           Demo
         </Link>
       </div>

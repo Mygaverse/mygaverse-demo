@@ -22,7 +22,7 @@ export function Topbar() {
     try {
       await signOut(auth);
       // Redirect to the root login page
-      window.location.href = "/"; 
+      window.location.href = "/bqool/login"; 
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -43,7 +43,7 @@ export function Topbar() {
         {/* ADMIN BUTTON (Only visible to Admins) */}
         {isAdmin && (
             <a 
-              href="/demo/im" 
+              href="/bqool/im" 
               className="flex items-center gap-2 px-3 py-1.5 bg-[#f1f7ff] text-[#0066b7] rounded-md hover:[#eef2f7] transition-colors mr-2"
               title="Go to Admin Panel"
             >
@@ -209,22 +209,22 @@ export function Topbar() {
                 <div className="text-gray-500 text-xs">peter.smith@gmail.com</div>
               </div>
               <button
-                onClick={() => router.push('/account/profile')} 
+                onClick={() => router.push('/bqool/account/profile')} 
                 className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-left">
                   <Person size={16} color='#0066B7'/> Profile
               </button>
               <button 
-                onClick={() => router.push('/account/billing')} 
+                onClick={() => router.push('/bqool/account/billing')} 
                 className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-left">
                   <CreditCard size={16} color='#0066B7'/> Billing
               </button>
               <button 
-                onClick={() => router.push('/account/connections')} 
+                onClick={() => router.push('/bqool/account/connections')} 
                 className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-left">
                   <Link size={16} color='#0066B7'/> Connections
               </button>
               <button 
-                onClick={() => router.push('/account/users')} 
+                onClick={() => router.push('/bqool/account/users')} 
                 className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 text-left">
                   <People size={16} color='#0066B7'/> Users
               </button>

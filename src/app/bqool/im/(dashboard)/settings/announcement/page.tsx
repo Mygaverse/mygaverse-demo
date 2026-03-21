@@ -137,7 +137,7 @@ export default function AnnouncementPage() {
                     </h1>
                     <p className="text-gray-500 mt-1">Manage system-wide notifications and news updates.</p>
                 </div>
-                <Button variant="primary" className="gap-2" onClick={() => router.push('/im/settings/announcement/editor?id=new')}>
+                <Button variant="primary" className="gap-2" onClick={() => router.push('/bqool/im/settings/announcement/editor?id=new')}>
                     <Plus size={20} /> New Announcement
                 </Button>
             </div>
