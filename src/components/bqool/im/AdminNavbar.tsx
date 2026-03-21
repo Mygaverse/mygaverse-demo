@@ -34,8 +34,8 @@ export function AdminNavbar() {
     }
 
     // SETTINGS: Check if any settings path is active
-    if (tabPath === '/im/settings') {
-      const isActive = pathname.startsWith('/im/settings');
+    if (tabPath === '/bqool/im/settings') {
+      const isActive = pathname.startsWith('/bqool/im/settings');
       return `px-6 py-2.5 text-sm font-semibold rounded-t-md transition-colors flex items-center gap-2 cursor-pointer relative ${isActive ? 'bg-[#f4f6f9] text-[#1a1a1a]' : 'text-white/80 hover:text-white hover:bg-white/10'
         }`;
     }
@@ -75,19 +75,19 @@ export function AdminNavbar() {
 
       {/* BOTTOM ROW: Navigation Tabs */}
       <div className="px-6 pt-2 flex gap-1 relative">
-        <Link href="/im/home" className={getTabClass('/bqool/im/home')}>
+        <Link href="/bqool/im/home" className={getTabClass('/bqool/im/home')}>
           Home
         </Link>
 
-        <Link href="/im/account" className={getTabClass('/bqool/im/account')}>
+        <Link href="/bqool/im/account" className={getTabClass('/bqool/im/account')}>
           Account
         </Link>
 
-        <Link href="/im/stores" className={getTabClass('/bqool/im/stores')}>
+        <Link href="/bqool/im/stores" className={getTabClass('/bqool/im/stores')}>
           Amazon Stores
         </Link>
 
-        <Link href="/im/forum" className={getTabClass('/bqool/im/forum')}>
+        <Link href="/bqool/im/forum" className={getTabClass('/bqool/im/forum')}>
           Forum
         </Link>
 
@@ -97,14 +97,14 @@ export function AdminNavbar() {
           onMouseEnter={() => setIsSettingsOpen(true)}
           onMouseLeave={() => setIsSettingsOpen(false)}
         >
-          <div className={getTabClass('/im/settings')}>
+          <div className={getTabClass('/bqool/im/settings')}>
             Settings <ChevronDown size={12} />
           </div>
 
           {isSettingsOpen && (
             <div className="absolute top-full left-0 min-w-[200px] bg-white text-gray-800 rounded-b-md shadow-lg z-50 py-1 border border-gray-100 animate-in fade-in zoom-in-95 duration-75">
               <Link
-                href="/im/settings/announcement"
+                href="/bqool/im/settings/announcement"
                 className="block px-4 py-2 text-sm hover:bg-gray-50 hover:text-blue-600 transition-colors"
               >
                 Announcement
