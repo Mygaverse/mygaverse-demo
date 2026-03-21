@@ -26,9 +26,11 @@ export default function Page() {
     // 2. Wait for Auth to initialize
     if (authLoading) return;
 
-    // 3. If no user, the Global Guard should handle redirect, 
-    // but we safety return here to avoid errors.
-    if (!user) return;
+    // 3. If no user, redirect to login
+    if (!user) {
+      router.replace('/bqool/login');
+      return;
+    }
 
     const verifyOnboarding = async () => {
       try {
@@ -44,11 +46,11 @@ export default function Page() {
           } else {
             // ❌ Not onboarded: Redirect to Wizard
             // Use 'replace' to avoid back-button history loops
-            router.replace('/getting-started');
+            router.replace('/bqool/getting-started');
           }
         } else {
           // Edge case: No DB record yet -> Redirect to Wizard
-          router.replace('/getting-started');
+          router.replace('/bqool/getting-started');
         }
       } catch (error) {
         console.error("Error verifying user:", error);

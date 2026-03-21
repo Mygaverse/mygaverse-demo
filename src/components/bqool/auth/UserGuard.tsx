@@ -11,7 +11,7 @@ export function UserGuard({ children }: { children: React.ReactNode }) {
     if (!loading) {
       // 1. If not logged in at all -> Kick out
       if (!user) {
-        window.location.href = "/"; // Go to Login
+        router.replace('/bqool/login'); return;
         return;
       }
 
@@ -26,7 +26,7 @@ export function UserGuard({ children }: { children: React.ReactNode }) {
       } else {
          // ACCESS DENIED (Pending or Rejected users)
          alert("Your account is pending approval.");
-         window.location.href = "/";
+         router.replace('/bqool/login');
       }
     }
   }, [user, loading, router]);
