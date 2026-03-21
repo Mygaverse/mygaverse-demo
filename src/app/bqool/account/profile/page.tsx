@@ -12,7 +12,7 @@ import { Modal } from '@/components/bqool/ui/Modal';
 import { Button } from '@/components/bqool/ui/Button';
 // Import custom selectors
 import { SingleSelect } from '@/components/bqool/ui/SingleSelect';
-import { StoreSelector, Store } from '@/components/bqool/ui/StoreSelector';
+import { StoreSelector } from '@/components/bqool/ui/StoreSelector';
 
 // --- Sub-Components ---
 
@@ -32,7 +32,6 @@ export default function ProfilePage() {
   
   // State
   const [profile, setProfile] = useState<any>(null);
-  const [stores, setStores] = useState<Store[]>([]);
   const [pageLoading, setPageLoading] = useState(true);
 
   // Editor State
@@ -78,22 +77,6 @@ export default function ProfilePage() {
         if (userSnap.exists()) {
            setProfile({ id: userSnap.id, ...userSnap.data() });
         }
-
-        // 4. Get Available Stores & Format for StoreSelector
-        const q = query(collection(db, 'stores'), where('status', '==', 'active'));
-        const storeSnap = await getDocs(q);
-        
-        const formattedStores: Store[] = storeSnap.docs.map(d => {
-            const data = d.data();
-            return {
-                id: d.id,
-                name: data.name,
-                // Extract country code from marketplace string (e.g. "Amazon US" -> "us")
-                countryCode: getCountryCode(data.marketplace), 
-                marketplace: 'amazon'
-            };
-        });
-        setStores(formattedStores);
 
       } catch (error) {
         console.error("Error loading profile:", error);
@@ -275,9 +258,8 @@ export default function ProfilePage() {
                 {/* Row 7: Default Store (StoreSelector) */}
                 <ProfileRow label="Default Store">
                     <div className="w-[250px] h-[42px] rounded-r-md border-r border-gray-300">
-                         <StoreSelector 
+                         <StoreSelector
                             mode="single"
-                            stores={stores}
                             selectedStoreIds={profile?.defaultStoreId ? [profile.defaultStoreId] : []}
                             onSelect={(ids) => handleUpdateField('defaultStoreId', ids[0])}
                             showLabel={false}

@@ -183,15 +183,8 @@ export default function ConnectionsPage() {
             <div className="flex items-center shadow-sm rounded-md h-[48px]">
                 {/* 1. Marketplace Selector */}
                 <div className="w-[240px] h-full">
-                    <StoreSelector 
-                        mode="multiple" //
-                        stores={stores.map(s => ({ 
-                            id: s.id, 
-                            name: s.name, 
-                            marketplace: 'amazon', 
-                            // Helper logic to get country code from string
-                            countryCode: s.marketplace.toLowerCase().includes('us') ? 'us' : 'ca' 
-                        }))} 
+                    <StoreSelector
+                        mode="multiple"
                         selectedStoreIds={selectedMktIds}
                         onSelect={setSelectedMktIds}
                         showLabel={true}

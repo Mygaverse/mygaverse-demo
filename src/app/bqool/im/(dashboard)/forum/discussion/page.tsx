@@ -54,7 +54,7 @@ function DiscussionContent() {
         const unsubPost = onSnapshot(doc(db, 'forum_posts', postId), (docSnap) => {
             if (docSnap.exists()) {
                 const data = docSnap.data() as ForumPost;
-                setPost({ id: docSnap.id, ...data });
+                setPost({ id: docSnap.id, ...(data as Omit<ForumPost, 'id'>) });
                 setIsFollowing(data.followers?.includes(CURRENT_USER_ID) || false);
             } else {
                 setPost(null); // Not found

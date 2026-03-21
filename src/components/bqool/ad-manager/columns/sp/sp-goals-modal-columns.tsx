@@ -3,7 +3,19 @@ import { Badge } from "../../../ui/Badge";
 import { ColumnDef } from "../../../tables/DynamicTable";
 import { ProductInfoCell } from "../../../tables/cells/ProductInfoCell";
 import { EntityCell } from "../../../tables/cells/EntityCell";
-import { SPGoalModalUnifiedRow } from "../../../../../_backup/dashboard-next-legacy/components/ad-manager/data/sp/sp-goals-modal-data";
+
+export interface SPGoalModalUnifiedRow {
+  campaignName: string;
+  campaignType: string;
+  campaignStatus: string;
+  storeName: string;
+  storeFlag: string;
+  adStatus: string;
+  productName: string;
+  productImage: string;
+  asin: string;
+  sku: string;
+}
 
 export const getGoalModalUnifiedColumns = (): ColumnDef<SPGoalModalUnifiedRow>[] => {
 
