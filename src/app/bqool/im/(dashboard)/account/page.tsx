@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { ShieldLockFill, PersonBadge, BriefcaseFill, TagFill } from 'react-bootstrap-icons';
-import { collection, query, orderBy, getDocs, updateDoc, doc, Timestamp } from 'firebase/firestore';
+import { collection, query, getDocs, updateDoc, doc } from 'firebase/firestore';
 import { db } from '@/lib/bqool/firebase';
 import { DynamicTable, ColumnDef } from '@/components/bqool/tables/DynamicTable';
 import { Button } from '@/components/bqool/ui/Button'; // Reuse your Button!
@@ -70,7 +70,7 @@ export default function AdminDashboard() {
     const loadUsers = async () => {
         setLoading(true);
         try {
-            const q = query(collection(db, "users"), orderBy("createdAt", "desc"));
+            const q = query(collection(db, "users"));
             const snapshot = await getDocs(q);
             const userData = snapshot.docs.map(doc => ({
                 id: doc.id,
@@ -173,7 +173,7 @@ export default function AdminDashboard() {
                     {row.status !== 'approved' && (
                         <Button size="sm" onClick={() => approveUser(row.id)}>Approve</Button>
                     )}
-                    <Button size="sm" variant="secondary" onClick={() => router.push(`/im/user-details?uid=${row.id}`)}>Details</Button>
+                    <Button size="sm" variant="secondary" onClick={() => router.push(`/bqool/im/user-details?uid=${row.id}`)}>Details</Button>
                 </div>
             )
         },

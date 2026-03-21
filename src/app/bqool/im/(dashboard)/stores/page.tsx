@@ -122,7 +122,7 @@ export default function StoresPage() {
                 </button>
                 
                 {/* Manage */}
-                <Button size="sm" variant="secondary" onClick={() => router.push(`/im/store-details?id=${row.id}`)}>
+                <Button size="sm" variant="secondary" onClick={() => router.push(`/bqool/im/store-details?id=${row.id}`)}>
                   Manage
                 </Button>
 

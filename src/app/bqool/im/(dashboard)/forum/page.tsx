@@ -151,7 +151,7 @@ export default function IMForumPage() {
                     filteredPosts.map(post => (
                         <div
                             key={post.id}
-                            onClick={() => router.push(`/im/forum/discussion?id=${post.id}`)}
+                            onClick={() => router.push(`/bqool/im/forum/discussion?id=${post.id}`)}
                             className="bg-white p-6 rounded-lg border border-gray-200 hover:border-purple-300 transition-colors cursor-pointer group shadow-sm hover:shadow-md"
                         >
                             <div className="flex justify-between items-start">
