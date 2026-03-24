@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { PlayCircle, Clock, PlayCircleFill } from 'react-bootstrap-icons';
-import StartHero from '@/public/start_hero.png';
+
 import { OnboardingWizard } from '@/components/bqool/onboarding/OnboardingWizard';
 
 import { doc, getDoc } from 'firebase/firestore';
@@ -259,7 +259,7 @@ export default function GettingStartedPage() {
             <div className="mr-6 relative">
               <div className="w-40 h-32 bg-blue-100 rounded-full blur-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
               <img
-                src={StartHero.src}
+                src="/start_hero.png"
                 alt="Getting Started Illustration"
                 className="w-64 h-auto relative z-10"
                 onError={(e) => { e.currentTarget.style.display = 'none'; }}
