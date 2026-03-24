@@ -8,10 +8,30 @@ import router from 'next/dist/shared/lib/router/router';
 //import { useRouter } from 'next/navigation';
 
 // 2. Define a Custom User Type that includes 'role'
+export interface BillingData {
+  isSubscribed: boolean;
+  subscriberStatus: 'active' | 'cancel' | 'switch' | 'overdue' | 'suspended';
+  trialDaysLeft: number | 'canceled';
+  subscriptionDate: any | null;
+  activePlan: {
+    name: string;
+    amount: number;
+    billingCycle: string;
+    overage: string;
+    overageFee: number;
+    nextPaymentDate?: string;
+  } | null;
+  previousPlan: any | null;
+  savedPaymentMethods: any[];
+}
+
 export interface AppUser extends User {
   role?: string;
   status?: string;
+  category?: string;
   onboarded?: boolean;
+  displayName: string | null;
+  billing?: BillingData;
 }
 
 type AuthContextType = {

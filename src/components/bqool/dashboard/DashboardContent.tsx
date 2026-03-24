@@ -6,9 +6,9 @@ import { doc, getDoc, collection, query, where, getDocs } from "firebase/firesto
 import { db } from "@/lib/bqool/firebase";
 import { useAuth } from "@/app/bqool/context/AuthContext";
 
-import { TopTableSection } from "./TopTableSection";
+import { TopTableSection, Report } from "./TopTableSection";
 import { PerformanceOverView } from "./PerformanceOverView";
-import { PerformanceOverTime } from "./PerformanceOverTime";
+import { PerformanceOverTime, TabData } from "./PerformanceOverTime";
 import { DashboardWidgets } from "./reports/DashboardWidgets";
 
 // UI Components
@@ -67,6 +67,18 @@ export function DashboardContent() {
   const [visibleMetrics, setVisibleMetrics] = useState<string[]>([
     "totalSales", "spend", "sales", "acos"
   ]);
+
+  // Lifted state for Reports and Chart Tabs
+  const [reports, setReports] = useState<Report[]>([
+    { id: '1', type: 'Top 5', metric: 'Ad Sales' },
+  ]);
+  const [activeReportId, setActiveReportId] = useState('1');
+  const [chartTabs, setChartTabs] = useState<TabData[]>([
+    { id: 'fixed-1', metric1: 'Ad Sales', metric2: 'Ad Spend' },
+    { id: 'fixed-2', metric1: 'Ad Orders', metric2: 'ACOS' },
+    { id: 'fixed-3', metric1: 'Ad Spend', metric2: 'Impressions' },
+  ]);
+  const [activeChartTabId, setActiveChartTabId] = useState('fixed-1');
 
   // --- 2. INITIALIZATION ---
   useEffect(() => {
@@ -243,7 +255,8 @@ export function DashboardContent() {
         adGroups: procAdGroups,
         productAds: procProductAds,
         targeting: procTargeting,
-        searchTerms: procSearchTerms
+        searchTerms: procSearchTerms,
+        goals: []
     };
   }, [rawCampaigns, rawAdGroups, rawProductAds, rawTargeting, rawSearchTerms, adType, dateRange, currentSelection]);
 
@@ -368,12 +381,20 @@ export function DashboardContent() {
             <div className="flex items-center justify-center h-64 text-gray-400">Loading Dashboard Data...</div> 
           ) : (
             /* Pass data to the extracted component */
-            <DashboardWidgets 
-                data={dashboardData} 
-                currency={selectedCurrency} 
+            <DashboardWidgets
+                data={dashboardData}
+                currency={selectedCurrency}
                 dateRange={dateRange}
                 visibleMetrics={visibleMetrics}
-                onMetricsChange={setVisibleMetrics} 
+                onMetricsChange={setVisibleMetrics}
+                reports={reports}
+                activeReportId={activeReportId}
+                onReportChange={setActiveReportId}
+                onReportsChange={setReports}
+                chartTabs={chartTabs}
+                activeChartTabId={activeChartTabId}
+                onChartTabChange={setActiveChartTabId}
+                onChartTabsChange={setChartTabs}
             />
           )}
       </div>
@@ -389,13 +410,21 @@ export function DashboardContent() {
           >
               {/* Pass the SAME component to reuse layout & data */}
               <div className="flex flex-col gap-6 pointer-events-none"> 
-                  <DashboardWidgets 
-                      data={dashboardData} 
-                      currency={selectedCurrency} 
+                  <DashboardWidgets
+                      data={dashboardData}
+                      currency={selectedCurrency}
                       dateRange={dateRange}
                       isReportMode={true}
                       visibleMetrics={visibleMetrics}
-                      onMetricsChange={setVisibleMetrics} 
+                      onMetricsChange={setVisibleMetrics}
+                      reports={reports}
+                      activeReportId={activeReportId}
+                      onReportChange={setActiveReportId}
+                      onReportsChange={setReports}
+                      chartTabs={chartTabs}
+                      activeChartTabId={activeChartTabId}
+                      onChartTabChange={setActiveChartTabId}
+                      onChartTabsChange={setChartTabs}
                   />
               </div>
           </ReportPreviewModal>

@@ -16,6 +16,10 @@ export function Topbar() {
   // Helper: Check if user is admin
   // Use safe check incase role is missing or uppercase
   const isAdmin = user?.role?.toLowerCase() === 'admin';
+  const isManager = user?.role?.toLowerCase() === 'manager';
+  const isEmployee = user?.category === 'Employee';
+
+  const canAccessIM = isAdmin || isManager || isEmployee;
 
   // DEFINE LOGOUT HANDLER
   const handleLogout = async () => {
@@ -29,7 +33,7 @@ export function Topbar() {
   };
 
   return (
-    <div className="bg-white fixed top-0 left-0 right-0 h-[60px] px-5 flex items-center justify-between shadow-sm z-[1000]">
+    <div className="bg-white fixed top-[40px] left-0 right-0 h-[60px] px-5 flex items-center justify-between shadow-sm z-[1000]">
       {/* Logo Area */}
       <div className="flex items-center gap-5">
         <a href="#" className="hover:opacity-80 transition-opacity">
@@ -40,8 +44,8 @@ export function Topbar() {
 
       <div className="flex items-center gap-4">
 
-        {/* ADMIN BUTTON (Only visible to Admins) */}
-        {isAdmin && (
+        {/* ADMIN BUTTON (Only visible to Admins/Employees) */}
+        {canAccessIM && (
             <a 
               href="/bqool/im" 
               className="flex items-center gap-2 px-3 py-1.5 bg-[#f1f7ff] text-[#0066b7] rounded-md hover:[#eef2f7] transition-colors mr-2"
@@ -59,7 +63,7 @@ export function Topbar() {
         <SimplePopover
           align="right"
           width='w-[380px]'
-          trigger={<button className="text-[#0066b7] hover:opacity-80"><Speedometer size={24} /></button>}
+          trigger={<button className="text-[#0066b7] hover:opacity-80 flex items-center justify-center p-1"><Speedometer size={24} /></button>}
           content={
             <div className="flex flex-col">
                 {/* Header */}
@@ -123,7 +127,7 @@ export function Topbar() {
         <SimplePopover
           align="right"
           width='w-[380px]'
-          trigger={<button className="text-[#0066b7] hover:opacity-80"><QuestionCircleFill size={24} /></button>}
+          trigger={<button className="text-[#0066b7] hover:opacity-80 flex items-center justify-center p-1"><QuestionCircleFill size={24} /></button>}
           content={
             <div className="flex flex-col">
                 {/* Header */}
@@ -179,7 +183,7 @@ export function Topbar() {
         <SimplePopover
           align="right"
           width='w-[180px]'
-          trigger={<button className="text-[#0066b7] hover:opacity-80"><GlobeAmericas size={24} /></button>}
+          trigger={<button className="text-[#0066b7] hover:opacity-80 flex items-center justify-center p-1"><GlobeAmericas size={24} /></button>}
           content={
             <div className="flex flex-col">
                 <button className="px-4 py-3 text-left hover:bg-gray-50 text-[14px] text-[#212529] border-b-2 border-[#4aaada] transition-colors cursor-pointer">
@@ -198,15 +202,19 @@ export function Topbar() {
         {/* Profile */}
         <SimplePopover
           align="right"
-          trigger={<button id="tour-topbar" className="text-[#0066b7] hover:opacity-80"><PersonCircle size={24} /></button>}
+          trigger={<button id="tour-topbar" className="text-[#0066b7] hover:opacity-80 flex items-center justify-center p-1"><PersonCircle size={24} /></button>}
           content={
             <div id="tour-trial-status" className="flex flex-col text-sm">
               <div className="p-4 flex flex-col items-center border-b">
-                <div className="w-16 h-16 rounded-full overflow-hidden mb-2">
-                   <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop" className="w-full h-full object-cover" />
+                <div className="w-16 h-16 rounded-full overflow-hidden mb-2 bg-gray-100 flex items-center justify-center">
+                  {user?.photoURL ? (
+                    <img src={user.photoURL} className="w-full h-full object-cover" alt="Profile" />
+                  ) : (
+                    <Person size={32} className="text-gray-400" />
+                  )}
                 </div>
-                <div className="font-bold">Peter Smith</div>
-                <div className="text-gray-500 text-xs">peter.smith@gmail.com</div>
+                <div className="font-bold">{user?.displayName || user?.email?.split('@')[0] || 'User'}</div>
+                <div className="text-gray-500 text-xs">{user?.email}</div>
               </div>
               <button
                 onClick={() => router.push('/bqool/account/profile')} 

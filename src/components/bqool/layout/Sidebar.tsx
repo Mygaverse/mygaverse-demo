@@ -49,7 +49,7 @@ export function Sidebar() {
   return (
     <div
       id="tour-sidebar"
-      className={`bg-[#0066b7] h-[calc(100vh-60px)] flex flex-col pt-0 shadow-lg fixed left-0 top-[60px] z-[999] overflow-hidden transition-all duration-300 ease-in-out ${
+      className={`bg-[#0066b7] h-[calc(100vh-100px)] flex flex-col pt-0 shadow-lg fixed left-0 top-[100px] z-[999] overflow-hidden transition-all duration-300 ease-in-out ${
         isHovered ? 'w-[224px]' : 'w-[56px]'
       }`}
       onMouseEnter={() => setIsHovered(true)}
