@@ -12,7 +12,7 @@ import { requireAuth } from '@/lib/scriptoplay/api-auth';
 ffmpeg.setFfmpegPath(installer.path);
 
 // Allow up to 10 minutes for large video assembly (many scenes + BGM)
-export const maxDuration = 600;
+export const maxDuration = 300;
 
 const BUCKET = 'user-assets';
 
