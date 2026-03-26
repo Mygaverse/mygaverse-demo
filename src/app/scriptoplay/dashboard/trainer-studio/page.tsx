@@ -664,7 +664,7 @@ export default function TrainerStudioPage() {
                     onChange={(config, prompt) => {
                       setCharConfig(config);
                       setAssetPrompt(prompt);
-                      setAssetCharName(config.characterName);
+                      setAssetCharName(config.characterName ?? "");
                     }}
                   />
                 </div>
